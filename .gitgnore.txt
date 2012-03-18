@@ -1,0 +1,2 @@
+/Annuaire/lib/
+/WS_Annuaire/lib/

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" uri="www.springframework.org/schema/beans/spring-beans-3.1.xsd"/>
+    <system systemId="http://www.springframework.org/schema/security/spring-security-3.1.xsd" uri="www.springframework.org/schema/security/spring-security-3.1.xsd"/>
+    <system systemId="http://jakarta.apache.org/log4j/" uri="logging.apache.org/log4j/index.xml"/>
+    <system systemId="http://cxf.apache.org/schemas/jaxws.xsd" uri="cxf.apache.org/schemas/jaxws.xsd"/>
+    <system systemId="http://cxf.apache.org/schemas/core.xsd" uri="cxf.apache.org/schemas/core.xsd"/>
+    <system systemId="http://www.springframework.org/schema/beans/spring-beans.xsd" uri="www.springframework.org/schema/beans/spring-beans.xsd"/>
+    <system systemId="http://cxf.apache.org/schemas/configuration/cxf-beans.xsd" uri="cxf.apache.org/schemas/configuration/cxf-beans.xsd"/>
+    <system systemId="http://cxf.apache.org/schemas/configuration/parameterized-types.xsd" uri="cxf.apache.org/schemas/configuration/parameterized-types.xsd"/>
+</catalog>

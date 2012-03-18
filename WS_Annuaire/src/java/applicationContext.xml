@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                    http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+                    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+                     http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">   
+                     
+  <!-- Source de données Derby -->
+    <bean id="DerbyDatasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>org.apache.derby.jdbc.ClientDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:derby://localhost:1527/annuaire</value>
+        </property>
+        <property name="username">
+            <value>admin</value>
+        </property>
+        <property name="password">
+            <value>admin</value>
+        </property>
+
+
+    </bean>
+
+    <bean id="dao" class="dao.DerbyDao">
+        <property name="datasource" ref="DerbyDatasource" />
+    </bean>
+    
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    
+    <bean id="annuaireSpring" class="service.AnnuaireSpringImpl" />
+    
+    <bean id="logIn" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+    <bean id="logOut" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+    <bean id="saajIn" class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+    <bean id="wss4jIn" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+        <constructor-arg>
+            <map>
+                <entry key="action" value="UsernameToken Timestamp" />
+                <entry key="passwordType" value="PasswordText" />
+            </map>
+        </constructor-arg>
+    </bean>
+
+<!-- The CXF Bus -->
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging />
+        </cxf:features>
+        <cxf:properties>
+            <entry key="ws-security.validate.token" value="false" />
+            <entry key="ws-security.ut.no-callbacks" value="true" />
+            <entry key="ws-security.ut.validator" value="validation.UTValidator" />
+        </cxf:properties>
+        <cxf:inInterceptors>
+            <ref bean="logIn" />
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <ref bean="logOut" />
+        </cxf:outInterceptors>
+        <cxf:inFaultInterceptors>
+            <ref bean="logIn" />
+        </cxf:inFaultInterceptors>
+        <cxf:outFaultInterceptors>
+            <ref bean="logOut" />
+        </cxf:outFaultInterceptors>
+    </cxf:bus>
+    
+    <jaxws:endpoint id="annuaireSpringEndpoint"
+                    implementor="#annuaireSpring"
+                    address="/AnnuaireSpring" >
+                        
+        <jaxws:inInterceptors>
+            <ref bean="saajIn" />
+            <ref bean="wss4jIn" />
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+
+</beans>
+

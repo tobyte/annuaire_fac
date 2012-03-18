@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="AnnuaireSpringImplService" targetNamespace="http://service/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://service/" version="1.0" xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="ajouterUtilisateur" type="tns:ajouterUtilisateur"/>
+<xs:element name="ajouterUtilisateurResponse" type="tns:ajouterUtilisateurResponse"/>
+<xs:element name="listerUtilisateur" type="tns:listerUtilisateur"/>
+<xs:element name="listerUtilisateurResponse" type="tns:listerUtilisateurResponse"/>
+<xs:element name="modifierUtilisateur" type="tns:modifierUtilisateur"/>
+<xs:element name="modifierUtilisateurResponse" type="tns:modifierUtilisateurResponse"/>
+<xs:element name="personne" type="tns:personne"/>
+<xs:element name="rechercherUtilisateur" type="tns:rechercherUtilisateur"/>
+<xs:element name="rechercherUtilisateurResponse" type="tns:rechercherUtilisateurResponse"/>
+<xs:element name="supprimerUtilisateur" type="tns:supprimerUtilisateur"/>
+<xs:element name="supprimerUtilisateurResponse" type="tns:supprimerUtilisateurResponse"/>
+<xs:complexType name="rechercherUtilisateur">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="rechercherUtilisateurResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:personne"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="personne">
+<xs:sequence>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="id" type="xs:int"/>
+<xs:element minOccurs="0" name="nom" type="xs:string"/>
+<xs:element minOccurs="0" name="prenom" type="xs:string"/>
+<xs:element minOccurs="0" name="telephone" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="modifierUtilisateur">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+<xs:element minOccurs="0" name="arg4" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="modifierUtilisateurResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ajouterUtilisateur">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element minOccurs="0" name="arg3" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ajouterUtilisateurResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="supprimerUtilisateur">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="supprimerUtilisateurResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="listerUtilisateur">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="listerUtilisateurResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:personne"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="modifierUtilisateur">
+    <wsdl:part element="tns:modifierUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercherUtilisateur">
+    <wsdl:part element="tns:rechercherUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="supprimerUtilisateurResponse">
+    <wsdl:part element="tns:supprimerUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listerUtilisateurResponse">
+    <wsdl:part element="tns:listerUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ajouterUtilisateurResponse">
+    <wsdl:part element="tns:ajouterUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listerUtilisateur">
+    <wsdl:part element="tns:listerUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ajouterUtilisateur">
+    <wsdl:part element="tns:ajouterUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="supprimerUtilisateur">
+    <wsdl:part element="tns:supprimerUtilisateur" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifierUtilisateurResponse">
+    <wsdl:part element="tns:modifierUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rechercherUtilisateurResponse">
+    <wsdl:part element="tns:rechercherUtilisateurResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AnnuaireSpring">
+    <wsdl:operation name="rechercherUtilisateur">
+      <wsdl:input message="tns:rechercherUtilisateur" name="rechercherUtilisateur">
+    </wsdl:input>
+      <wsdl:output message="tns:rechercherUtilisateurResponse" name="rechercherUtilisateurResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modifierUtilisateur">
+      <wsdl:input message="tns:modifierUtilisateur" name="modifierUtilisateur">
+    </wsdl:input>
+      <wsdl:output message="tns:modifierUtilisateurResponse" name="modifierUtilisateurResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ajouterUtilisateur">
+      <wsdl:input message="tns:ajouterUtilisateur" name="ajouterUtilisateur">
+    </wsdl:input>
+      <wsdl:output message="tns:ajouterUtilisateurResponse" name="ajouterUtilisateurResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="supprimerUtilisateur">
+      <wsdl:input message="tns:supprimerUtilisateur" name="supprimerUtilisateur">
+    </wsdl:input>
+      <wsdl:output message="tns:supprimerUtilisateurResponse" name="supprimerUtilisateurResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listerUtilisateur">
+      <wsdl:input message="tns:listerUtilisateur" name="listerUtilisateur">
+    </wsdl:input>
+      <wsdl:output message="tns:listerUtilisateurResponse" name="listerUtilisateurResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnnuaireSpringImplServiceSoapBinding" type="tns:AnnuaireSpring">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="rechercherUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="rechercherUtilisateur">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="rechercherUtilisateurResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modifierUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="modifierUtilisateur">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="modifierUtilisateurResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ajouterUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ajouterUtilisateur">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ajouterUtilisateurResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="supprimerUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="supprimerUtilisateur">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="supprimerUtilisateurResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listerUtilisateur">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listerUtilisateur">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listerUtilisateurResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnnuaireSpringImplService">
+    <wsdl:port binding="tns:AnnuaireSpringImplServiceSoapBinding" name="AnnuaireSpringImplPort">
+      <soap:address location="http://toby-pc:8080/WS_Annuaire/AnnuaireSpring"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    
+    <http auto-config='true' access-denied-page="/accessDenied.jsp">
+        <logout logout-success-url="/logout.jsp"/>
+        <intercept-url pattern="/login-denied.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https" />
+        <intercept-url pattern="/login-failure.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https" />
+        <intercept-url pattern="/accessDenied.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https" />
+        <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https" />
+        <intercept-url pattern="/AjouterUtilisateur" access="ROLE_ADMIN" requires-channel="https" />
+        <intercept-url pattern="/SupprimerUtilisateur" access="ROLE_ADMIN" requires-channel="https" />
+        <intercept-url pattern="/ModifierUtilisateur" access="ROLE_ADMIN" requires-channel="https" />
+        <intercept-url pattern="/**" access="ROLE_USER" requires-channel="https" />
+        <form-login login-page='/login.jsp'
+                    default-target-url='/index.jsp'
+                    always-use-default-target='true'
+                    authentication-failure-url="/login-failure.jsp"/>
+        <port-mappings>
+            <port-mapping http="8080" https="8181"/>
+        </port-mappings>
+    
+<!--        <session-management invalid-session-url="/login-denied.jsp">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>-->
+    </http>
+    
+
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="DerbyDatasource"
+                               users-by-username-query="SELECT username,password,enabled FROM gestion.users
+                                         WHERE username = ?"
+                               authorities-by-username-query="SELECT username,authority FROM gestion.authorities
+                                             WHERE username = ?"/>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>
